@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.patient.PatientUpdateProfileFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin20"
+        android:layout_marginVertical="@dimen/margin20">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/patientUpdateAccountTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/my_account"
+            android:textColor="@color/black"
+            android:textSize="@dimen/textSize20"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/patientUpdateImg"
+            android:layout_width="@dimen/width120"
+            android:layout_height="@dimen/height120"
+            android:layout_marginTop="@dimen/margin16"
+            android:padding="@dimen/padding5"
+            android:scaleType="fitCenter"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/patientUpdateAccountTV"
+            app:shapeAppearanceOverlay="@style/circular"
+            app:srcCompat="@drawable/doctor"
+            app:strokeColor="@color/Sky_Blue"
+            app:strokeWidth="1dp" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/patientUpdateNameTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin16"
+            android:gravity="center"
+            android:inputType="text"
+            android:hint="@string/enter_full_name"
+            android:textColor="@color/black"
+            android:textSize="@dimen/textSize15"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/patientUpdateImg" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/patientUpdateEmailTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin16"
+            android:gravity="center"
+            android:inputType="textEmailAddress"
+            android:hint="@string/enter_email"
+            android:textColor="@color/black"
+            android:textSize="@dimen/textSize15"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/patientUpdateNameTV"/>
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/patientUpdatePhoneNumberTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin16"
+            android:gravity="center|center_horizontal"
+            android:inputType="phone"
+            android:hint="@string/phone_number"
+            android:textColor="@color/black"
+            android:textSize="@dimen/textSize15"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/patientUpdateEmailTV"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/patientUpdateChooseGenderTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin16"
+            android:layout_marginStart="@dimen/margin16"
+            android:text="@string/choose_gender"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="@+id/patientUpdatePhoneNumberTV"
+            app:layout_constraintTop_toBottomOf="@+id/patientUpdatePhoneNumberTV" />
+
+        <RadioGroup
+            android:id="@+id/patientGenderUpdateRG"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/patientUpdateChooseGenderTV">
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/maleUpdateRB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/male"
+                android:layout_marginEnd="@dimen/margin16"/>
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/femaleUpdateRG"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/female"
+                android:layout_marginStart="@dimen/margin16"/>
+
+        </RadioGroup>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/patientUpdateSelectAge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin16"
+            android:layout_marginTop="@dimen/margin16"
+            android:text="@string/select_your_age"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/patientGenderUpdateRG"/>
+
+        <DatePicker
+            android:id="@+id/patientUpdateAgePicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/marginMinus10"
+            android:calendarViewShown="false"
+            android:datePickerMode="spinner"
+            android:spinnersShown="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/patientUpdateSelectAge"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/patientUpdateProfileB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/margin16"
+            android:layout_marginHorizontal="@dimen/margin16"
+            android:backgroundTint="@color/button_color"
+            android:textColor="@color/white"
+            android:text="@string/update_profile"
+            android:textSize="@dimen/textSize15"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/patientUpdateAgePicker"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

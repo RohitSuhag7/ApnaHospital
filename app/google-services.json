@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "873599075207",
+    "project_id": "apnahospital-3c9e0",
+    "storage_bucket": "apnahospital-3c9e0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:873599075207:android:cacac059f886436224c922",
+        "android_client_info": {
+          "package_name": "com.example.apnahospital"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "873599075207-rrc2uagpg3245hd3nrh4r7k1b17p7bfh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjLjabNHAU2L9ylivgcNJHHBtNijrPY8U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "873599075207-rrc2uagpg3245hd3nrh4r7k1b17p7bfh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

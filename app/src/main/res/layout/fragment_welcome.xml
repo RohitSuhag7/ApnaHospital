@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".ui.WelcomeFragment"
+    android:background="@color/teal_700">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/appNameTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin16"
+        android:text="@string/apna_hospital"
+        android:textColor="@color/white"
+        android:textSize="@dimen/textSize48"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/logoBackIV"
+        android:layout_width="@dimen/width200"
+        android:layout_height="@dimen/height200"
+        android:layout_marginTop="@dimen/margin16"
+        android:src="@drawable/app_logo_back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appNameTV" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/logoIV"
+        android:layout_width="@dimen/width120"
+        android:layout_height="@dimen/height120"
+        android:src="@drawable/heart_in_hand"
+        app:layout_constraintBottom_toBottomOf="@+id/logoBackIV"
+        app:layout_constraintEnd_toEndOf="@+id/logoBackIV"
+        app:layout_constraintStart_toStartOf="@+id/logoBackIV"
+        app:layout_constraintTop_toTopOf="@+id/logoBackIV" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/hospitalLottieAnim"
+        android:layout_width="@dimen/width0"
+        android:layout_height="@dimen/height0"
+        android:layout_marginTop="@dimen/margin16"
+        android:layout_marginBottom="@dimen/margin16"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logoBackIV"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/online_doctor_app" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/selectIdentityCV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="6dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logoBackIV"
+        android:visibility="gone">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/selectYourselfTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin32"
+                android:layout_marginHorizontal="@dimen/margin16"
+                android:text="@string/user_selection"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textSize20"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/selectPatientIV"
+                android:layout_width="@dimen/width120"
+                android:layout_height="@dimen/height120"
+                android:layout_marginStart="@dimen/margin16"
+                android:layout_marginTop="@dimen/margin16"
+                android:padding="5dp"
+                android:scaleType="fitCenter"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/selectYourselfTV"
+                app:shapeAppearanceOverlay="@style/circular"
+                app:srcCompat="@drawable/patient"
+                app:strokeColor="@color/Sky_Blue"
+                app:strokeWidth="@dimen/width1" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/selectDoctorIV"
+                android:layout_width="@dimen/width120"
+                android:layout_height="@dimen/height120"
+                android:layout_marginEnd="@dimen/margin16"
+                android:padding="5dp"
+                android:scaleType="fitCenter"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/selectPatientIV"
+                app:shapeAppearanceOverlay="@style/circular"
+                app:srcCompat="@drawable/doctor"
+                app:strokeColor="@color/Sky_Blue"
+                app:strokeWidth="@dimen/width1" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/patientTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin16"
+                android:layout_marginBottom="@dimen/margin40"
+                android:text="@string/patient"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textSize15"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/selectPatientIV"
+                app:layout_constraintStart_toStartOf="@+id/selectPatientIV"
+                app:layout_constraintTop_toBottomOf="@+id/selectPatientIV"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/doctorTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/doctor"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textSize15"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/selectDoctorIV"
+                app:layout_constraintStart_toStartOf="@+id/selectDoctorIV"
+                app:layout_constraintTop_toTopOf="@+id/patientTV" />
+
+<!--            <androidx.appcompat.widget.AppCompatTextView-->
+<!--                android:id="@+id/alreadyRegisterTV"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="@dimen/margin40"-->
+<!--                android:layout_marginBottom="@dimen/margin16"-->
+<!--                android:text="@string/already_registered"-->
+<!--                android:layout_marginStart="@dimen/margin40"-->
+<!--                android:textColor="#6E6969"-->
+<!--                android:textSize="@dimen/textSize15"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="@+id/selectPatientIV"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/patientTV" />-->
+
+<!--            <androidx.appcompat.widget.AppCompatTextView-->
+<!--                android:id="@+id/loginHere"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="@string/signin_here"-->
+<!--                android:textColor="@color/teal_700"-->
+<!--                android:textSize="@dimen/textSize15"-->
+<!--                app:layout_constraintEnd_toEndOf="@+id/selectDoctorIV"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/alreadyRegisterTV"-->
+<!--                app:layout_constraintTop_toTopOf="@+id/alreadyRegisterTV" />-->
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

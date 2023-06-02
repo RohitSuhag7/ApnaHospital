@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="@dimen/radius15"
+    android:layout_marginHorizontal="@dimen/margin10"
+    android:layout_marginVertical="@dimen/margin10"
+    app:cardBackgroundColor="@color/Sky_Blue"
+    tools:context=".ui.patient.DocListFragment">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/margin5">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/listDocImage"
+        android:layout_width="@dimen/width80"
+        android:layout_height="@dimen/height80"
+        android:padding="@dimen/padding2"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/circular"
+        app:srcCompat="@drawable/logo1"
+        app:strokeColor="@color/Sky_Blue"
+        app:strokeWidth="@dimen/width1" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/listDocName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin16"
+        android:layout_marginTop="@dimen/margin5"
+        android:padding="@dimen/padding2"
+        android:textColor="#13042E"
+        android:textSize="@dimen/textSize18"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/listDocImage"
+        app:layout_constraintTop_toTopOf="@+id/listDocImage"
+        tools:text="NAME" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/listDocSpeciality"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding2"
+        android:textColor="@color/black"
+        android:textSize="@dimen/textSize15"
+        app:layout_constraintStart_toStartOf="@+id/listDocName"
+        app:layout_constraintTop_toBottomOf="@+id/listDocName"
+        tools:text="SPECIALITY" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/listDocExperience"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding2"
+        android:textColor="@color/black"
+        android:textSize="@dimen/textSize10"
+        app:layout_constraintStart_toStartOf="@+id/listDocSpeciality"
+        app:layout_constraintTop_toBottomOf="@+id/listDocSpeciality"
+        tools:text="EXPERIENCE" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

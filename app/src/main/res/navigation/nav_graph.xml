@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/welcomeFragment">
+    <fragment
+        android:id="@+id/welcomeFragment"
+        android:name="com.example.apnahospital.ui.WelcomeFragment"
+        android:label="fragment_welcome"
+        tools:layout="@layout/fragment_welcome" >
+        <action
+            android:id="@+id/action_welcomeFragment_to_authenticationFragment"
+            app:destination="@id/authenticationFragment" />
+        <action
+            android:id="@+id/action_welcomeFragment_to_patientActivity"
+            app:destination="@id/patientActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/authenticationFragment"
+        android:name="com.example.apnahospital.ui.auth.AuthenticationFragment"
+        android:label="AuthenticationFragment" >
+        <action
+            android:id="@+id/action_authenticationFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_authenticationFragment_to_registrationFragment"
+            app:destination="@id/registrationFragment" />
+        <action
+            android:id="@+id/action_authenticationFragment_to_patientActivity"
+            app:destination="@id/patientActivity" />
+        <action
+            android:id="@+id/action_authenticationFragment_to_patientUpdateProfileFragment2"
+            app:destination="@id/patientUpdateProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.apnahospital.ui.auth.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" />
+    <fragment
+        android:id="@+id/registrationFragment"
+        android:name="com.example.apnahospital.ui.auth.RegistrationFragment"
+        android:label="fragment_registration"
+        tools:layout="@layout/fragment_registration" />
+    <activity
+        android:id="@+id/patientActivity"
+        android:name="com.example.apnahospital.ui.patient.PatientActivity"
+        android:label="activity_patient"
+        tools:layout="@layout/activity_patient" />
+    <fragment
+        android:id="@+id/patientUpdateProfileFragment"
+        android:name="com.example.apnahospital.ui.patient.PatientUpdateProfileFragment"
+        android:label="fragment_patient_update_profile"
+        tools:layout="@layout/fragment_patient_update_profile" >
+        <action
+            android:id="@+id/action_patientUpdateProfileFragment_to_patientActivity"
+            app:destination="@id/patientActivity" />
+    </fragment>
+</navigation>

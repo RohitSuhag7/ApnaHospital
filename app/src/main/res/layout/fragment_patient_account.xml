@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.patient.PatientAccountFragment">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/patientProfileTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin32"
+        android:text="@string/account_details"
+        android:textColor="@color/black"
+        android:textSize="@dimen/textSize20"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height2"
+        android:layout_marginTop="@dimen/margin16"
+        android:background="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/patientProfileTV" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/patientIV"
+        android:layout_width="@dimen/width120"
+        android:layout_height="@dimen/height120"
+        android:layout_marginTop="@dimen/margin16"
+        android:padding="@dimen/padding5"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view"
+        app:shapeAppearanceOverlay="@style/circular"
+        app:srcCompat="@drawable/doctor"
+        app:strokeColor="@color/Sky_Blue"
+        app:strokeWidth="1dp" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/patientNameTV"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height30"
+        android:layout_marginTop="@dimen/margin16"
+        android:gravity="center"
+        android:padding="@dimen/padding2"
+        android:textColor="#13042E"
+        android:textSize="@dimen/textSize15"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/patientIV"
+        app:layout_constraintStart_toStartOf="@+id/patientIV"
+        app:layout_constraintTop_toBottomOf="@+id/patientIV"
+        tools:text="@string/full_name" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/patientEmailTV"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/height30"
+        android:layout_marginStart="@dimen/margin16"
+        android:layout_marginTop="@dimen/margin32"
+        android:gravity="center"
+        android:text="@string/email_address"
+        android:textColor="@color/black"
+        android:textSize="@dimen/textSize18"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/patientNameTV" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/patientAccountEmailTV"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/height30"
+        android:layout_marginStart="@dimen/margin50"
+        android:gravity="center"
+        android:inputType="textEmailAddress"
+        android:textSize="@dimen/textSize15"
+        app:layout_constraintStart_toEndOf="@+id/patientEmailTV"
+        app:layout_constraintTop_toTopOf="@+id/patientEmailTV"
+        tools:text="EMAIL ADDRESS" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/patientPhoneTV"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/height30"
+        android:layout_marginTop="@dimen/margin32"
+        android:gravity="center|center_horizontal"
+        android:text="@string/phone_number"
+        android:textColor="@color/black"
+        android:textSize="@dimen/textSize18"
+        app:layout_constraintStart_toStartOf="@+id/patientEmailTV"
+        app:layout_constraintTop_toBottomOf="@+id/patientEmailTV" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/patientAccountPhoneTV"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/height30"
+        android:gravity="center|center_horizontal"
+        android:inputType="phone"
+        android:textSize="@dimen/textSize15"
+        app:layout_constraintStart_toStartOf="@+id/patientAccountEmailTV"
+        app:layout_constraintTop_toTopOf="@+id/patientPhoneTV"
+        tools:text="PHONE NUMBER" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/patientGenderTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin32"
+        android:gravity="center|center_horizontal"
+        android:text="@string/gender"
+        android:textColor="@color/black"
+        android:textSize="@dimen/textSize18"
+        app:layout_constraintStart_toStartOf="@+id/patientPhoneTV"
+        app:layout_constraintTop_toBottomOf="@+id/patientPhoneTV" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/height30"
+        android:gravity="center|center_horizontal"
+        android:textSize="@dimen/textSize15"
+        app:layout_constraintStart_toStartOf="@+id/patientAccountPhoneTV"
+        app:layout_constraintTop_toTopOf="@+id/patientGenderTV"
+        tools:text="Male" />
+
+<!--    <RadioGroup-->
+<!--        android:id="@+id/genderRG"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/patientAccountPhoneTV"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/patientGenderTV">-->
+
+<!--        <androidx.appcompat.widget.AppCompatRadioButton-->
+<!--            android:id="@+id/maleRB"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginEnd="@dimen/margin16"-->
+<!--            android:text="@string/male" />-->
+
+<!--        <androidx.appcompat.widget.AppCompatRadioButton-->
+<!--            android:id="@+id/femaleRG"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="@dimen/margin16"-->
+<!--            android:text="@string/female" />-->
+
+<!--    </RadioGroup>-->
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/patientUpdateB"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin16"
+        android:layout_marginHorizontal="@dimen/margin50"
+        android:backgroundTint="@color/button_color"
+        android:text="@string/update_profile"
+        android:textAllCaps="false"
+        android:textSize="@dimen/textSize15"
+        app:layout_constraintBottom_toTopOf="@+id/patientSignoutB"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/patientSignoutB"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/sign_out"
+        android:layout_marginBottom="@dimen/margin40"
+        android:layout_marginHorizontal="@dimen/margin50"
+        android:backgroundTint="@color/button_color"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/patientUpdateB"
+        app:layout_constraintStart_toStartOf="@+id/patientUpdateB" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

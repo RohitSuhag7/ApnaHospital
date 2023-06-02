@@ -1,0 +1,54 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+
+             <!--    DP        -->
+
+<!--    Margin-->
+    <dimen name="margin140">140dp</dimen>
+    <dimen name="margin56">56dp</dimen>
+    <dimen name="margin50">50dp</dimen>
+    <dimen name="margin40">40dp</dimen>
+    <dimen name="margin32">32dp</dimen>
+    <dimen name="margin20">20dp</dimen>
+    <dimen name="margin16">16dp</dimen>
+    <dimen name="margin10">10dp</dimen>
+    <dimen name="margin5">5dp</dimen>
+    <dimen name="margin2">2dp</dimen>
+    <dimen name="marginMinus10">-10dp</dimen>
+
+<!--    Padding-->
+    <dimen name="padding5">5dp</dimen>
+    <dimen name="padding2">2dp</dimen>
+
+<!--    Width-->
+    <dimen name="width300">300dp</dimen>
+    <dimen name="width250">250dp</dimen>
+    <dimen name="width200">200dp</dimen>
+    <dimen name="width120">120dp</dimen>
+    <dimen name="width80">80dp</dimen>
+    <dimen name="width30">30dp</dimen>
+    <dimen name="width3">3dp</dimen>
+    <dimen name="width1">1dp</dimen>
+    <dimen name="width0">0dp</dimen>
+
+<!--    Height-->
+    <dimen name="height200">200dp</dimen>
+    <dimen name="height120">120dp</dimen>
+    <dimen name="height80">80dp</dimen>
+    <dimen name="height48">48dp</dimen>
+    <dimen name="height30">30dp</dimen>
+    <dimen name="height2">2dp</dimen>
+    <dimen name="height0">0dp</dimen>
+
+<!--    Radius-->
+    <dimen name="radius30">30dp</dimen>
+    <dimen name="radius15">15dp</dimen>
+    <dimen name="radius6">6dp</dimen>
+
+             <!--    SP        -->
+    <dimen name="textSize48">48sp</dimen>
+    <dimen name="textSize20">20sp</dimen>
+    <dimen name="textSize18">18sp</dimen>
+    <dimen name="textSize15">15sp</dimen>
+    <dimen name="textSize10">10sp</dimen>
+</resources>

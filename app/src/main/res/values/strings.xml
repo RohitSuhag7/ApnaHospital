@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">ApnaHospital</string>
+    <string name="title_activity_splash_screen">SplashScreenActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="apna_hospital">Apna Hospital</string>
+    <string name="user_register">User Register</string>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="signin">Sign In</string>
+    <string name="signup">Sign Up</string>
+    <string name="user_selection">PLEASE SELECT YOURSELF AS</string>
+    <string name="patient">PATIENT</string>
+    <string name="doctor">DOCTOR</string>
+    <string name="already_registered">Already Registered?</string>
+    <string name="signin_here">SignIn here</string>
+    <string name="enter_full_name">Enter Full Name</string>
+    <string name="enter_email">Enter Email</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="home">Home</string>
+    <string name="appointment">Appointment</string>
+    <string name="account">Account</string>
+    <string name="update_profile">Update Profile</string>
+    <string name="account_details">Account Details</string>
+    <string name="full_name">FULL NAME</string>
+    <string name="gender">Gender:</string>
+    <string name="phone_number">Phone Number:</string>
+    <string name="email_address">Email Address:</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="my_account">MY ACCOUNT</string>
+    <string name="book_appointment">Book Appointment</string>
+    <string name="who_is_this_to_you">Who is this to you?</string>
+    <string name="choose_gender">Choose Gender</string>
+    <string name="others">Others</string>
+    <string name="select_your_age">Select Your Age</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+</resources>
