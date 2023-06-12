@@ -1,6 +1,6 @@
 package com.example.apnahospital.viewmodel
 
-import android.content.Context
+import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.apnahospital.repository.AuthRepository
@@ -13,21 +13,23 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class AuthViewModel @Inject constructor(
     private val authRepository: AuthRepository,
-    private val context: Context
+    private val context: Application
 ) : ViewModel() {
 
-    private val _signInStateFlow: MutableStateFlow<FirebaseResponseState?> = MutableStateFlow(null)
+    private val _signInStateFlow: MutableStateFlow<FirebaseResponseState?> = MutableStateFlow(FirebaseResponseState.FirebaseLoading)
     val signInStateFlow: StateFlow<FirebaseResponseState?> = _signInStateFlow
 
-    private val _signUpStateFlow: MutableStateFlow<FirebaseResponseState?> = MutableStateFlow(null)
+    private val _signUpStateFlow: MutableStateFlow<FirebaseResponseState?> = MutableStateFlow(FirebaseResponseState.FirebaseLoading)
     val signUpStateFlow: StateFlow<FirebaseResponseState?> = _signUpStateFlow
+
+//    private val _isFirstTimeLogin: MutableStateFlow<Boolean> = MutableStateFlow(false)
+//    val isFirstTimeLogin: StateFlow<Boolean?> = _isFirstTimeLogin
 
     private val currentUser: FirebaseUser?
         get() = authRepository.currentUser
@@ -40,6 +42,7 @@ class AuthViewModel @Inject constructor(
     }
 
     fun signInUser(email: String, password: String) = viewModelScope.launch {
+//        getIsUserFirstTimeLogin()
         _signInStateFlow.value = FirebaseResponseState.FirebaseLoading
 
         val result = authRepository.signIn(email, password)
@@ -58,16 +61,15 @@ class AuthViewModel @Inject constructor(
         _signInStateFlow.value = null
     }
 
-    fun isUserFirstTimeLogin(isFirst: Boolean) {
-        viewModelScope.launch(Dispatchers.IO) {
-            context.writeBool(IS_FIRST_TIME, isFirst)
-        }
-    }
+//    fun isUserFirstTimeLogin(isFirst: Boolean) {
+//        viewModelScope.launch(Dispatchers.IO) {
+//            context.writeBool(IS_FIRST_TIME, isFirst)
+//        }
+//    }
 
-    val getIsUserFirstTimeLogin = viewModelScope.launch {
-        context.readBool(IS_FIRST_TIME).collect {
-       return@collect
-        }
-    }
-
+//    private fun getIsUserFirstTimeLogin() = viewModelScope.launch {
+//        context.readBool(IS_FIRST_TIME).collect {
+//            _isFirstTimeLogin.value = it
+//        }
+//    }
 }

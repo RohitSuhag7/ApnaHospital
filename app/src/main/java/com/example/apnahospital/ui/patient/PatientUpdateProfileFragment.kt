@@ -10,23 +10,22 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import com.example.apnahospital.R
 import com.example.apnahospital.databinding.FragmentPatientUpdateProfileBinding
 import com.example.apnahospital.model.PatientInfo
 import com.example.apnahospital.screenstate.FirebaseResponseState.FirebaseFailure
 import com.example.apnahospital.screenstate.FirebaseResponseState.FirebaseLoading
 import com.example.apnahospital.screenstate.FirebaseResponseState.FirebaseSuccess
+import com.example.apnahospital.utils.navigateTo
 import com.example.apnahospital.viewmodel.PatientViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
-
 
 @AndroidEntryPoint
 class PatientUpdateProfileFragment : Fragment() {
 
     private lateinit var _binding: FragmentPatientUpdateProfileBinding
-    private val viewModel by viewModels<PatientViewModel>()
+    private val patientViewModel by viewModels<PatientViewModel>()
     private lateinit var patientInfo: PatientInfo
 
     private var id = ""
@@ -34,9 +33,9 @@ class PatientUpdateProfileFragment : Fragment() {
     private var name = ""
     private var email = ""
     private var phoneNumber = ""
-    private  var genderButton = ""
+    private var genderButton = ""
     private var age = ""
-    lateinit var navBar : BottomNavigationView
+    lateinit var navBar: BottomNavigationView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -75,8 +74,9 @@ class PatientUpdateProfileFragment : Fragment() {
     }
 
     private fun updatePatientProfileInfo() {
+
         with(_binding) {
-            id = viewModel.currentUser?.uid.toString()
+            id = patientViewModel.currentUser?.uid.toString()
             imageUrl = patientUpdateImg.toString()
             name = patientUpdateNameTV.text.toString()
             email = patientUpdateEmailTV.text.toString()
@@ -88,10 +88,11 @@ class PatientUpdateProfileFragment : Fragment() {
         if (name.isNotEmpty() && email.isNotEmpty() && phoneNumber.isNotEmpty()) {
             if (phoneNumber.length == 10) {
                 patientInfo = PatientInfo(id, imageUrl, name, email, phoneNumber, genderButton, age)
-                viewModel.setPatientInfo(patientInfo)
+                patientViewModel.setPatientInfo(patientInfo)
                 lifeCycleScopeLaunch()
             } else {
-                Toast.makeText(requireContext(), "Enter Valid Phone Number", Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(), "Enter Valid Phone Number", Toast.LENGTH_LONG)
+                    .show()
             }
         } else {
             Toast.makeText(requireContext(), "Fill all the Fields", Toast.LENGTH_LONG).show()
@@ -100,19 +101,34 @@ class PatientUpdateProfileFragment : Fragment() {
 
     private fun lifeCycleScopeLaunch() {
         lifecycleScope.launchWhenStarted {
-            viewModel.patientStateFlow.collect { state ->
+            patientViewModel.patientStateFlow.collect { state ->
                 when (state) {
                     FirebaseLoading -> {
                         Toast.makeText(requireContext(), "Updating....", Toast.LENGTH_LONG).show()
                     }
+
                     is FirebaseFailure -> {
-                        Toast.makeText(requireContext(), "Please check your Internet connection", Toast.LENGTH_LONG).show()
+                        Toast.makeText(
+                            requireContext(),
+                            "Please check your Internet connection",
+                            Toast.LENGTH_LONG
+                        ).show()
                     }
+
                     is FirebaseSuccess -> {
-                        findNavController().navigate(R.id.action_patientUpdateProfileFragment_to_patientActivity)
+                        patientInfo.isFirstLogin = false
+                        navigateTo(
+                            requireView(),
+                            R.id.action_patientUpdateProfileFragment_to_patientActivity
+                        )
                     }
+
                     else -> {
-                        Toast.makeText(requireContext(), "Please check your Internet connection", Toast.LENGTH_LONG).show()
+                        Toast.makeText(
+                            requireContext(),
+                            "Please check your Internet connection",
+                            Toast.LENGTH_LONG
+                        ).show()
                     }
                 }
             }

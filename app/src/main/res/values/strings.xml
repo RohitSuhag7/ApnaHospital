@@ -28,6 +28,7 @@
     <string name="account_details">Account Details</string>
     <string name="full_name">FULL NAME</string>
     <string name="gender">Gender:</string>
+    <string name="age">Age:</string>
     <string name="phone_number">Phone Number:</string>
     <string name="email_address">Email Address:</string>
     <string name="sign_out">Sign Out</string>

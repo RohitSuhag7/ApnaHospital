@@ -15,7 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class AuthenticationFragment : Fragment() {
 
     private lateinit var _binding: FragmentAuthenticationBinding
-    private  lateinit var authAdapterPager: AuthAdapterPager
+    private lateinit var authAdapterPager: AuthAdapterPager
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,7 +33,7 @@ class AuthenticationFragment : Fragment() {
         with(_binding) {
             authViewPager.adapter = authAdapterPager
             TabLayoutMediator(authTabLayout, authViewPager) { tab, position ->
-                when(position) {
+                when (position) {
                     0 -> tab.text = resources.getText(R.string.signup)
                     1 -> tab.text = resources.getText(R.string.signin)
                 }

@@ -1,7 +1,6 @@
 package com.example.apnahospital.utils
 
 import android.content.Context
-import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.doublePreferencesKey
 import androidx.datastore.preferences.core.edit
@@ -11,7 +10,6 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import java.util.prefs.Preferences
 
 //Preference Name
 const val PREFERENCE_NAME = "MyDataStore"
@@ -86,12 +84,13 @@ fun Context.readLong(key: String): Flow<Long> {
     }
 }
 
-
 /**
  * Add Boolean to the data store
  */
 suspend fun Context.writeBool(key: String, value: Boolean) {
-    dataStore.edit { pref -> pref[booleanPreferencesKey(key)] = value }
+    dataStore.edit { pref ->
+        pref[booleanPreferencesKey(key)] = value
+    }
 }
 
 /**
@@ -99,6 +98,6 @@ suspend fun Context.writeBool(key: String, value: Boolean) {
  */
 fun Context.readBool(key: String): Flow<Boolean> {
     return dataStore.data.map { pref ->
-        pref[booleanPreferencesKey(key)] ?: false
+        pref[booleanPreferencesKey(key)] ?: true
     }
 }

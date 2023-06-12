@@ -5,9 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
 import com.example.apnahospital.R
 import com.example.apnahospital.databinding.FragmentWelcomeBinding
+import com.example.apnahospital.utils.navigateTo
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -34,24 +34,32 @@ class WelcomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         CoroutineScope(Dispatchers.Main).launch {
-            delay(300)
+            delay(3000)
             _binding.hospitalLottieAnim.visibility = View.GONE
             _binding.selectIdentityCV.visibility = View.VISIBLE
         }
 
         with(_binding) {
-            selectPatientIV.setOnClickListener{
+            selectPatientIV.setOnClickListener {
                 isDoc = false
                 bundle = Bundle()
                 bundle.putBoolean("isDoc", isDoc)
-                findNavController().navigate(R.id.action_welcomeFragment_to_authenticationFragment, bundle)
+                navigateTo(
+                    requireView(),
+                    R.id.action_welcomeFragment_to_authenticationFragment,
+                    bundle
+                )
             }
 
-            selectDoctorIV.setOnClickListener{
+            selectDoctorIV.setOnClickListener {
                 isDoc = true
                 bundle = Bundle()
                 bundle.putBoolean("isDoc", isDoc)
-                findNavController().navigate(R.id.action_welcomeFragment_to_authenticationFragment, bundle)
+                navigateTo(
+                    requireView(),
+                    R.id.action_welcomeFragment_to_authenticationFragment,
+                    bundle
+                )
             }
         }
     }

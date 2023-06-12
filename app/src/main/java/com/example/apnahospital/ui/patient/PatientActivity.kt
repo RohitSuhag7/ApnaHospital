@@ -8,12 +8,10 @@ import com.example.apnahospital.R
 import com.example.apnahospital.databinding.ActivityPatientBinding
 import dagger.hilt.android.AndroidEntryPoint
 
-
 @AndroidEntryPoint
 class PatientActivity : AppCompatActivity() {
 
     private lateinit var _binding: ActivityPatientBinding
-    lateinit var view: View
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,15 +29,17 @@ class PatientActivity : AppCompatActivity() {
                     findNavController(R.id.navHostFragmentPatient).navigate(R.id.homeFragment)
                     true
                 }
+
                 R.id.navigation_appointment -> {
                     findNavController(R.id.navHostFragmentPatient).navigate(R.id.appointmentFragment)
                     true
                 }
+
                 R.id.navigation_account -> {
                     findNavController(R.id.navHostFragmentPatient).navigate(R.id.accountFragment)
-//                    _binding.patientNavView.visibility = View.GONE
                     true
                 }
+
                 else -> false
             }
         }

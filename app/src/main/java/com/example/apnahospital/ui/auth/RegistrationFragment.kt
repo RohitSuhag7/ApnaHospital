@@ -65,18 +65,33 @@ class RegistrationFragment : Fragment() {
         lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.signUpStateFlow.collect { state ->
-                    when(state) {
+                    when (state) {
                         FirebaseLoading -> {
-                            Toast.makeText(requireContext(), "You are successfully Signup, Please SignIn for proceed", Toast.LENGTH_LONG).show()
+                            Toast.makeText(
+                                requireContext(),
+                                "You are successfully Signup, Please SignIn for proceed",
+                                Toast.LENGTH_LONG
+                            ).show()
                         }
+
                         is FirebaseFailure -> {
-                            Toast.makeText(requireContext(), "Please check your Internet connection", Toast.LENGTH_LONG).show()
+                            Toast.makeText(
+                                requireContext(),
+                                "Please check your Internet connection",
+                                Toast.LENGTH_LONG
+                            ).show()
                         }
+
                         is FirebaseSuccess -> {
 //                            findNavController().navigate(R.id.action_registrationFragment_to_authenticationFragment)
                         }
+
                         else -> {
-                            Toast.makeText(requireContext(), "Please check your Internet connection", Toast.LENGTH_LONG).show()
+                            Toast.makeText(
+                                requireContext(),
+                                "Please check your Internet connection",
+                                Toast.LENGTH_LONG
+                            ).show()
                         }
                     }
                 }
