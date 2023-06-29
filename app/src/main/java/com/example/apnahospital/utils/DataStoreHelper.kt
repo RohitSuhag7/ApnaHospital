@@ -8,6 +8,8 @@ import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
+import com.example.apnahospital.model.PatientInfo
+import com.google.gson.Gson
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
@@ -25,7 +27,6 @@ val Context.dataStore by preferencesDataStore(
 suspend fun Context.writeString(key: String, value: String) {
     dataStore.edit { pref -> pref[stringPreferencesKey(key)] = value }
 }
-
 
 /**
  * Read string from the data store preferences
@@ -99,5 +100,14 @@ suspend fun Context.writeBool(key: String, value: Boolean) {
 fun Context.readBool(key: String): Flow<Boolean> {
     return dataStore.data.map { pref ->
         pref[booleanPreferencesKey(key)] ?: true
+    }
+}
+
+/**
+ * Add User data to data Store
+ */
+suspend fun Context.writeUserDetails(key: String, value: PatientInfo) {
+    dataStore.edit { pref ->
+        pref[stringPreferencesKey(key)] = Gson().toJson(value)
     }
 }

@@ -15,7 +15,9 @@ import com.example.apnahospital.screenstate.FirebaseResponseState
 import com.example.apnahospital.utils.navigateTo
 import com.example.apnahospital.viewmodel.AuthViewModel
 import com.example.apnahospital.viewmodel.PatientViewModel
+import com.google.firebase.database.DataSnapshot
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
@@ -23,7 +25,8 @@ class LoginFragment : Fragment() {
     private lateinit var _binding: FragmentLoginBinding
     private var isDoc: Boolean = false
     private val authViewModel by viewModels<AuthViewModel>()
-    private lateinit var patientInfo: PatientInfo
+    private val patientViewModel by viewModels<PatientViewModel>()
+    private var patientData: PatientInfo? = null
 
     private var loginEmail = ""
     private var loginPass = ""
@@ -39,8 +42,11 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+//        _binding.loginemailET.setText("rs@gmail.com")
+//        _binding.loginpassE.setText("rs@123")
 
         _binding.loginB.setOnClickListener {
+            patientLifecycleScope()
             userSignIn()
         }
     }
@@ -50,14 +56,14 @@ class LoginFragment : Fragment() {
             loginEmail = loginemailET.text.toString()
             loginPass = loginpassE.text.toString()
         }
-        patientInfo = PatientInfo(null, null, null, null, null, null, null)
+        patientViewModel.getPatientInfo()
         authViewModel.signInUser(loginEmail, loginPass)
-
         lifeCycleScopeLaunch()
     }
 
     private fun lifeCycleScopeLaunch() {
         lifecycleScope.launchWhenStarted {
+            delay(2000)
             authViewModel.signInStateFlow.collect { state ->
                 when (state) {
                     FirebaseResponseState.FirebaseLoading -> {
@@ -78,18 +84,18 @@ class LoginFragment : Fragment() {
 
                     is FirebaseResponseState.FirebaseSuccess -> {
                         if (isDoc) {
-//                            if (isLogin==true) {
-//                                Toast.makeText(requireContext(), "DoctorLogin", Toast.LENGTH_LONG).show()
-////                                viewModel.isUserFirstTimeLogin(false)
-//                                // TODO
-//                            } else {
-//                                // TODO
-//                            }
+                            TODO()
                         } else {
-                            if (patientInfo.isFirstLogin == true) {
-                                navigateTo(requireView(), R.id.action_authenticationFragment_to_patientUpdateProfileFragment2)
+                            if (patientData?.firstLogin == true || patientData?.firstLogin == null) {
+                                navigateTo(
+                                    requireView(),
+                                    R.id.action_authenticationFragment_to_patientUpdateProfileFragment2
+                                )
                             } else {
-                                navigateTo(requireView(), R.id.action_authenticationFragment_to_patientActivity)
+                                navigateTo(
+                                    requireView(),
+                                    R.id.action_authenticationFragment_to_patientActivity
+                                )
                             }
                         }
                     }
@@ -101,6 +107,21 @@ class LoginFragment : Fragment() {
                             Toast.LENGTH_LONG
                         ).show()
                     }
+                }
+            }
+        }
+    }
+
+    private fun patientLifecycleScope() {
+        lifecycleScope.launchWhenStarted {
+            patientViewModel.patientStateFlow.collect { state ->
+                when (state) {
+                    is FirebaseResponseState.FirebaseSuccess -> {
+                        val result = (state.data) as? DataSnapshot
+                        patientData = result?.getValue(PatientInfo::class.java)
+                    }
+
+                    else -> {}
                 }
             }
         }

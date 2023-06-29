@@ -18,7 +18,7 @@ import com.example.apnahospital.screenstate.FirebaseResponseState.FirebaseLoadin
 import com.example.apnahospital.screenstate.FirebaseResponseState.FirebaseSuccess
 import com.example.apnahospital.utils.navigateTo
 import com.example.apnahospital.viewmodel.PatientViewModel
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.database.DataSnapshot
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -35,7 +35,6 @@ class PatientUpdateProfileFragment : Fragment() {
     private var phoneNumber = ""
     private var genderButton = ""
     private var age = ""
-    lateinit var navBar: BottomNavigationView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,8 +53,6 @@ class PatientUpdateProfileFragment : Fragment() {
         _binding.patientUpdateProfileB.setOnClickListener {
             updatePatientProfileInfo()
         }
-//        navBar  = requireActivity().findViewById(R.id.patientNavView)
-//        navBar.visibility = View.GONE
     }
 
     private fun getRadioButtonValue(radioGroup: RadioGroup) {
@@ -74,7 +71,6 @@ class PatientUpdateProfileFragment : Fragment() {
     }
 
     private fun updatePatientProfileInfo() {
-
         with(_binding) {
             id = patientViewModel.currentUser?.uid.toString()
             imageUrl = patientUpdateImg.toString()
@@ -89,6 +85,7 @@ class PatientUpdateProfileFragment : Fragment() {
             if (phoneNumber.length == 10) {
                 patientInfo = PatientInfo(id, imageUrl, name, email, phoneNumber, genderButton, age)
                 patientViewModel.setPatientInfo(patientInfo)
+                patientViewModel.updateFirstLogin(false)
                 lifeCycleScopeLaunch()
             } else {
                 Toast.makeText(requireContext(), "Enter Valid Phone Number", Toast.LENGTH_LONG)
@@ -116,7 +113,10 @@ class PatientUpdateProfileFragment : Fragment() {
                     }
 
                     is FirebaseSuccess -> {
-                        patientInfo.isFirstLogin = false
+                        val result = (state.data) as? DataSnapshot
+                        val patientData = result?.getValue(PatientInfo::class.java)
+                        patientViewModel.savePatientInfoLocal(patientData)
+
                         navigateTo(
                             requireView(),
                             R.id.action_patientUpdateProfileFragment_to_patientActivity

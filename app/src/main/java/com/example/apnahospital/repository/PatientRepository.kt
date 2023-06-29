@@ -16,4 +16,6 @@ interface PatientRepository {
     suspend fun getPatientInfo(): FirebaseResponseState
 
     suspend fun deletePatientInfo(patientInfo: PatientInfo?): FirebaseResponseState
+
+    suspend fun updateFirstLogin(firstLogin: Boolean): FirebaseResponseState
 }

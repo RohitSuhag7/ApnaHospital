@@ -26,9 +26,11 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideAuthRepository(authRepositoryImp: AuthRepositoryImp): AuthRepository = authRepositoryImp
+    fun provideAuthRepository(authRepositoryImp: AuthRepositoryImp): AuthRepository =
+        authRepositoryImp
 
     @Singleton
     @Provides
-    fun providePatientRepository(patientRepositoryImp: PatientRepositoryImp): PatientRepository = patientRepositoryImp
+    fun providePatientRepository(patientRepositoryImp: PatientRepositoryImp): PatientRepository =
+        patientRepositoryImp
 }

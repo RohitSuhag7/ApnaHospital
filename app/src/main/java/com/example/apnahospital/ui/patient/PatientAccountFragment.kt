@@ -10,8 +10,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.apnahospital.R
 import com.example.apnahospital.databinding.FragmentPatientAccountBinding
+import com.example.apnahospital.model.PatientInfo
 import com.example.apnahospital.screenstate.FirebaseResponseState
-import com.example.apnahospital.utils.Constants
+import com.example.apnahospital.utils.getJson
 import com.example.apnahospital.utils.navigateTo
 import com.example.apnahospital.viewmodel.PatientViewModel
 import com.google.firebase.database.DataSnapshot
@@ -22,6 +23,7 @@ class PatientAccountFragment : Fragment() {
 
     private lateinit var _binding: FragmentPatientAccountBinding
     private val viewModel by viewModels<PatientViewModel>()
+    private var patientInfo: PatientInfo? = null
 
     private var name = ""
     var imgUrl = ""
@@ -48,7 +50,7 @@ class PatientAccountFragment : Fragment() {
         lifeCycleScopeLaunch()
     }
 
-    private fun getPatientProfileInfo() {
+    private fun getPatientTextFields() {
         with(_binding) {
             patientNameTV.text = name
             patientIV.tag = imgUrl
@@ -58,6 +60,7 @@ class PatientAccountFragment : Fragment() {
             patientAccountAgeTV.text = age
         }
         viewModel.getPatientInfo()
+        viewModel.readPatientInfoLocal()
     }
 
     private fun lifeCycleScopeLaunch() {
@@ -65,6 +68,7 @@ class PatientAccountFragment : Fragment() {
             viewModel.patientStateFlow.collect { state ->
                 when (state) {
                     FirebaseResponseState.FirebaseLoading -> {
+                        _binding.patientProgressBar.visibility = View.VISIBLE
                         Toast.makeText(
                             requireContext(),
                             "Please wait...",
@@ -79,16 +83,17 @@ class PatientAccountFragment : Fragment() {
                             Toast.LENGTH_LONG
                         ).show()
                     }
+
                     is FirebaseResponseState.FirebaseSuccess -> {
                         val result = (state.data) as? DataSnapshot
-                        name = result?.child(Constants.NAME)?.value.toString()
-//                        imgUrl = result.child("imgUrl").value.toString()
-                        email = result?.child(Constants.EMAIL)?.value.toString()
-                        phoneNumber = result?.child(Constants.PHONENUMBER)?.value.toString()
-                        gender = result?.child(Constants.GENDER)?.value.toString()
-                        age = result?.child(Constants.AGE)?.value.toString()
-                        getPatientProfileInfo()
+                        patientInfo = result?.getValue(PatientInfo::class.java)
+
+                        viewModel.savePatientInfoLocal(patientInfo)
+
+                        getPatientTextFields()
+                        getPatientData()
                     }
+
                     else -> {
                         Toast.makeText(
                             requireContext(),
@@ -96,6 +101,22 @@ class PatientAccountFragment : Fragment() {
                             Toast.LENGTH_LONG
                         ).show()
                     }
+                }
+            }
+        }
+    }
+
+    private fun getPatientData() {
+        lifecycleScope.launchWhenStarted {
+            viewModel.patientInfoStateFlow.collect {
+                if (it.isNotEmpty() && !it.equals(null)) {
+                    val patientData = getJson(it, PatientInfo::class.java)
+                    name = patientData.name.toString()
+//                        imgUrl = result.child("imgUrl").value.toString()
+                    email = patientData.email.toString()
+                    phoneNumber = patientData.phoneNumber.toString()
+                    gender = patientData.gender.toString()
+                    age = patientData.age.toString()
                 }
             }
         }

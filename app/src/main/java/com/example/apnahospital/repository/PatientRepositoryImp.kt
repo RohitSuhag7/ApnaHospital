@@ -10,13 +10,17 @@ import com.google.firebase.database.FirebaseDatabase
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
-class PatientRepositoryImp @Inject constructor(private val firebaseDatabase: FirebaseDatabase, private val firebaseAuth: FirebaseAuth): PatientRepository {
+class PatientRepositoryImp @Inject constructor(
+    private val firebaseDatabase: FirebaseDatabase,
+    private val firebaseAuth: FirebaseAuth
+) : PatientRepository {
 
     override val currentUser: FirebaseUser?
         get() = firebaseAuth.currentUser
 
     override val dbReference: DatabaseReference
-        get() = firebaseDatabase.reference.child(Constants.PATIENTS).child(currentUser?.uid.toString())
+        get() = firebaseDatabase.reference.child(Constants.PATIENTS)
+            .child(currentUser?.uid.toString())
 
     override suspend fun updatePatientInfo(patientInfo: PatientInfo?): FirebaseResponseState {
 
@@ -43,5 +47,15 @@ class PatientRepositoryImp @Inject constructor(private val firebaseDatabase: Fir
 
     override suspend fun deletePatientInfo(patientInfo: PatientInfo?): FirebaseResponseState {
         TODO("Not yet implemented")
+    }
+
+    override suspend fun updateFirstLogin(firstLogin: Boolean): FirebaseResponseState {
+        return try {
+            FirebaseResponseState.FirebaseSuccess(
+                dbReference.child(Constants.FIRST_LOGIN).setValue(false)
+            )
+        } catch (e: Exception) {
+            FirebaseResponseState.FirebaseFailure(e)
+        }
     }
 }

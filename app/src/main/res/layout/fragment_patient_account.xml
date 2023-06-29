@@ -152,30 +152,6 @@
         app:layout_constraintTop_toTopOf="@+id/patientAgeTV"
         tools:text="Age" />
 
-<!--    <RadioGroup-->
-<!--        android:id="@+id/genderRG"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:orientation="horizontal"-->
-<!--        app:layout_constraintStart_toStartOf="@+id/patientAccountPhoneTV"-->
-<!--        app:layout_constraintTop_toTopOf="@+id/patientGenderTV">-->
-
-<!--        <androidx.appcompat.widget.AppCompatRadioButton-->
-<!--            android:id="@+id/maleRB"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginEnd="@dimen/margin16"-->
-<!--            android:text="@string/male" />-->
-
-<!--        <androidx.appcompat.widget.AppCompatRadioButton-->
-<!--            android:id="@+id/femaleRG"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginStart="@dimen/margin16"-->
-<!--            android:text="@string/female" />-->
-
-<!--    </RadioGroup>-->
-
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/patientUpdateB"
         android:layout_width="match_parent"
@@ -202,5 +178,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/patientUpdateB"
         app:layout_constraintStart_toStartOf="@+id/patientUpdateB" />
+
+    <ProgressBar
+        android:id="@+id/patientProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

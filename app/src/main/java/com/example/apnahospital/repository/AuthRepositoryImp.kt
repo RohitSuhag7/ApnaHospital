@@ -7,7 +7,8 @@ import com.google.firebase.auth.UserProfileChangeRequest
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
-class AuthRepositoryImp @Inject constructor(private val firebaseAuth: FirebaseAuth): AuthRepository {
+class AuthRepositoryImp @Inject constructor(private val firebaseAuth: FirebaseAuth) :
+    AuthRepository {
 
     override val currentUser: FirebaseUser?
         get() = firebaseAuth.currentUser
@@ -28,7 +29,9 @@ class AuthRepositoryImp @Inject constructor(private val firebaseAuth: FirebaseAu
     ): FirebaseResponseState {
         return try {
             val result = firebaseAuth.createUserWithEmailAndPassword(email, password).await()
-            result.user?.updateProfile(UserProfileChangeRequest.Builder().setDisplayName(name).build())?.await()
+            result.user?.updateProfile(
+                UserProfileChangeRequest.Builder().setDisplayName(name).build()
+            )?.await()
             FirebaseResponseState.FirebaseSuccess(result.user)
         } catch (e: Exception) {
             FirebaseResponseState.FirebaseFailure(e)
