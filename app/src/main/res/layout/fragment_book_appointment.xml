@@ -99,7 +99,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin2"
-                android:hint="@string/who_is_this_to_you"
+                android:hint="@string/you_are_booking_appointment_for"
                 app:boxStrokeColor="@color/Sky_Blue"
                 app:hintTextColor="@color/black">
 

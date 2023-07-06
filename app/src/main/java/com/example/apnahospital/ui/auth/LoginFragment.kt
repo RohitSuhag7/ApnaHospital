@@ -89,7 +89,7 @@ class LoginFragment : Fragment() {
                             if (patientData?.firstLogin == true || patientData?.firstLogin == null) {
                                 navigateTo(
                                     requireView(),
-                                    R.id.action_authenticationFragment_to_patientUpdateProfileFragment2
+                                    R.id.action_authenticationFragment_to_patientUpdateProfileFragment
                                 )
                             } else {
                                 navigateTo(

@@ -36,7 +36,7 @@
     <string name="female">Female</string>
     <string name="my_account">MY ACCOUNT</string>
     <string name="book_appointment">Book Appointment</string>
-    <string name="who_is_this_to_you">Who is this to you?</string>
+    <string name="you_are_booking_appointment_for">You are Booking Appointment for?</string>
     <string name="choose_gender">Choose Gender</string>
     <string name="others">Others</string>
     <string name="select_your_age">Select Your Age</string>

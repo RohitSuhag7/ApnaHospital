@@ -52,7 +52,7 @@ class PatientRepositoryImp @Inject constructor(
     override suspend fun updateFirstLogin(firstLogin: Boolean): FirebaseResponseState {
         return try {
             FirebaseResponseState.FirebaseSuccess(
-                dbReference.child(Constants.FIRST_LOGIN).setValue(false)
+                dbReference.child(Constants.FIRST_LOGIN).setValue(firstLogin)
             )
         } catch (e: Exception) {
             FirebaseResponseState.FirebaseFailure(e)

@@ -108,7 +108,7 @@ class PatientAccountFragment : Fragment() {
 
     private fun getPatientData() {
         lifecycleScope.launchWhenStarted {
-            viewModel.patientInfoStateFlow.collect {
+            viewModel.patientLocalInfoStateFlow.collect {
                 if (it.isNotEmpty() && !it.equals(null)) {
                     val patientData = getJson(it, PatientInfo::class.java)
                     name = patientData.name.toString()

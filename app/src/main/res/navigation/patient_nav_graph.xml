@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_appointmentFragment_to_accountFragment"
             app:destination="@id/accountFragment" />
+        <action
+            android:id="@+id/action_appointmentFragment_to_bookAppointmentFragment"
+            app:destination="@id/bookAppointmentFragment" />
     </fragment>
     <fragment
         android:id="@+id/accountFragment"
@@ -37,4 +40,9 @@
         android:name="com.example.apnahospital.ui.patient.PatientUpdateProfileFragment"
         android:label="fragment_patient_update_profile"
         tools:layout="@layout/fragment_patient_update_profile" />
+    <fragment
+        android:id="@+id/bookAppointmentFragment"
+        android:name="com.example.apnahospital.ui.patient.BookAppointmentFragment"
+        android:label="fragment_book_appointment"
+        tools:layout="@layout/fragment_book_appointment" />
 </navigation>

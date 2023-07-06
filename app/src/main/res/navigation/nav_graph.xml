@@ -30,7 +30,7 @@
             android:id="@+id/action_authenticationFragment_to_patientActivity"
             app:destination="@id/patientActivity" />
         <action
-            android:id="@+id/action_authenticationFragment_to_patientUpdateProfileFragment2"
+            android:id="@+id/action_authenticationFragment_to_patientUpdateProfileFragment"
             app:destination="@id/patientUpdateProfileFragment" />
     </fragment>
     <fragment

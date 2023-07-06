@@ -17,6 +17,7 @@
     <dimen name="marginMinus10">-10dp</dimen>
 
 <!--    Padding-->
+    <dimen name="padding16">16dp</dimen>
     <dimen name="padding5">5dp</dimen>
     <dimen name="padding2">2dp</dimen>
 

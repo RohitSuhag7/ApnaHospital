@@ -27,8 +27,8 @@ class PatientViewModel @Inject constructor(
         MutableStateFlow(FirebaseResponseState.FirebaseLoading)
     val patientStateFlow: StateFlow<FirebaseResponseState?> = _patientStateFlow
 
-    private val _patientInfoStateFlow: MutableStateFlow<String> = MutableStateFlow("")
-    val patientInfoStateFlow: StateFlow<String> = _patientInfoStateFlow
+    private val _patientLocalInfoStateFlow: MutableStateFlow<String> = MutableStateFlow("")
+    val patientLocalInfoStateFlow: StateFlow<String> = _patientLocalInfoStateFlow
 
     val currentUser: FirebaseUser?
         get() = patientRepository.currentUser
@@ -59,7 +59,7 @@ class PatientViewModel @Inject constructor(
 
     fun readPatientInfoLocal() = viewModelScope.launch {
         context.readString("patientInfo").collect {
-            _patientInfoStateFlow.value = it
+            _patientLocalInfoStateFlow.value = it
         }
     }
 }
