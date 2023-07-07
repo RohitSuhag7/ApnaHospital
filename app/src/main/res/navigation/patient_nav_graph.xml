@@ -44,5 +44,9 @@
         android:id="@+id/bookAppointmentFragment"
         android:name="com.example.apnahospital.ui.patient.BookAppointmentFragment"
         android:label="fragment_book_appointment"
-        tools:layout="@layout/fragment_book_appointment" />
+        tools:layout="@layout/fragment_book_appointment" >
+        <action
+            android:id="@+id/action_bookAppointmentFragment_to_appointmentFragment"
+            app:destination="@id/appointmentFragment" />
+    </fragment>
 </navigation>

@@ -52,7 +52,7 @@
 
         <LinearLayout
             android:id="@+id/bookAppointmentLL"
-            android:layout_width="@dimen/width300"
+            android:layout_width="@dimen/width350"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin20"
             android:orientation="vertical"
@@ -94,7 +94,6 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/text_input_layout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -110,6 +109,44 @@
                     android:layout_marginBottom="@dimen/margin2"
                     android:layout_weight="1"
                     android:inputType="none" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin2"
+                android:hint="@string/select_specialities_of_disease"
+                app:boxStrokeColor="@color/Sky_Blue"
+                app:hintTextColor="@color/black">
+
+                <AutoCompleteTextView
+                    android:id="@+id/bookAppointmentSpecialitiesTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="@dimen/margin2"
+                    android:layout_weight="1"
+                    android:inputType="none" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/bookAppointmentSelectDoctorETV"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin2"
+                    android:hint="@string/select_doctor"
+                    android:visibility="gone"
+                    app:boxStrokeColor="@color/Sky_Blue"
+                    app:hintTextColor="@color/black">
+
+                <AutoCompleteTextView
+                        android:id="@+id/bookAppointmentSelectDoctorTV"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="@dimen/margin2"
+                        android:layout_weight="1"
+                        android:inputType="none" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <androidx.appcompat.widget.AppCompatTextView

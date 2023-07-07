@@ -1,5 +1,7 @@
 package com.example.apnahospital.di
 
+import com.example.apnahospital.repository.AppointmentsRepository
+import com.example.apnahospital.repository.AppointmentsRepositoryImp
 import com.example.apnahospital.repository.AuthRepository
 import com.example.apnahospital.repository.AuthRepositoryImp
 import com.example.apnahospital.repository.PatientRepository
@@ -33,4 +35,9 @@ object AppModule {
     @Provides
     fun providePatientRepository(patientRepositoryImp: PatientRepositoryImp): PatientRepository =
         patientRepositoryImp
+
+    @Singleton
+    @Provides
+    fun provideAppointmentsRepository(appointmentsRepositoryImp: AppointmentsRepositoryImp): AppointmentsRepository =
+        appointmentsRepositoryImp
 }
