@@ -12,4 +12,8 @@
     <color name="gradient_start_color">#19F8E4</color>
     <color name="gradient_end_color">#B7F3ED</color>
     <color name="Sky_Blue">#00BCD4</color>
+    <color name="grey">#DBDBDB</color>
+    <color name="blue">#1F51FF</color>
+    <color name="light_green">#4CBB17</color>
+    <color name="dark_grey">#808080</color>
 </resources>

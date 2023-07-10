@@ -11,7 +11,7 @@ interface AppointmentsRepository {
 
     val dbReference: DatabaseReference?
 
-    suspend fun setAppointment(appointments: Appointments?): FirebaseResponseState
+    suspend fun setAppointment(appointments: Appointments): FirebaseResponseState
 
     suspend fun getAppointments(): FirebaseResponseState
 

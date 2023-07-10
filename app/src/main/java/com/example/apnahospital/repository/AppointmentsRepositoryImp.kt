@@ -7,6 +7,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
 class AppointmentsRepositoryImp @Inject constructor(
@@ -21,9 +22,9 @@ class AppointmentsRepositoryImp @Inject constructor(
         get() = firebaseDatabase.reference.child(Constants.APPOINTMENTS)
             .child(currentUser?.uid.toString())
 
-    override suspend fun setAppointment(appointments: Appointments?): FirebaseResponseState {
+    override suspend fun setAppointment(appointments: Appointments): FirebaseResponseState {
         return try {
-            val result = dbReference.setValue(appointments)
+            val result = dbReference.push().setValue(appointments)
             FirebaseResponseState.FirebaseSuccess(result)
         } catch (e: Exception) {
             FirebaseResponseState.FirebaseFailure(e)
@@ -31,7 +32,16 @@ class AppointmentsRepositoryImp @Inject constructor(
     }
 
     override suspend fun getAppointments(): FirebaseResponseState {
-        TODO("Not yet implemented")
+        return try {
+            val result = dbReference.get().addOnSuccessListener { dataSnapshot ->
+                dataSnapshot.children.forEach {
+                    it.getValue(Appointments::class.java)
+                }
+            }.await()
+            FirebaseResponseState.FirebaseSuccess(result)
+        } catch (e: Exception) {
+            FirebaseResponseState.FirebaseFailure(e)
+        }
     }
 
     override suspend fun deleteAppointments(): FirebaseResponseState {

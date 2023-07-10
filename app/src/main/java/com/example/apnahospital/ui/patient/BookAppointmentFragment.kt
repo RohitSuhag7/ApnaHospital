@@ -10,11 +10,9 @@ import android.widget.DatePicker
 import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import com.example.apnahospital.R
 import com.example.apnahospital.databinding.FragmentBookAppointmentBinding
 import com.example.apnahospital.model.Appointments
-import com.example.apnahospital.screenstate.FirebaseResponseState
 import com.example.apnahospital.utils.navigateTo
 import com.example.apnahospital.viewmodel.AppointmentsViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -49,6 +47,7 @@ class BookAppointmentFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         getRadioButtonValue(_binding.bookAppointmentRadioGroup)
+        getAgeFromDatePicker(_binding.bookAppointmentDatePicker)
 
         _binding.bookAppointmentSaveB.setOnClickListener {
             setAppointmentsData()
@@ -101,14 +100,12 @@ class BookAppointmentFragment : Fragment() {
             relation = bookAppointmentRelationTV.text.toString()
             specialities = bookAppointmentSpecialitiesTV.text.toString()
             doctor = bookAppointmentSelectDoctorTV.text.toString()
-
-            getAgeFromDatePicker(bookAppointmentDatePicker)
         }
     }
 
     private fun getRadioButtonValue(radioGroup: RadioGroup) {
         radioGroup.setOnCheckedChangeListener { _, checkedId ->
-            gender = if (R.id.maleUpdateRB == checkedId) "Male" else "Female"
+            gender = if (R.id.bookAppointmentMale == checkedId) "Male" else "Female"
         }
     }
 

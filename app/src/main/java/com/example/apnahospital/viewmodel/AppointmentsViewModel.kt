@@ -32,4 +32,8 @@ class AppointmentsViewModel @Inject constructor(private val appointmentsReposito
     fun setAppointments(appointments: Appointments) = viewModelScope.launch {
         _appointmentStateFlow.value = appointmentsRepository.setAppointment(appointments)
     }
+
+    fun getAppointments() = viewModelScope.launch {
+        _appointmentStateFlow.value = appointmentsRepository.getAppointments()
+    }
 }

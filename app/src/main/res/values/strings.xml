@@ -44,4 +44,6 @@
     <string name="select_your_age">Select Your Age</string>
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
+    <string name="add_appointments">Add Appointments</string>
+    <string name="no_appointments_available">No Appointments Available</string>
 </resources>
