@@ -47,7 +47,6 @@ class BookAppointmentFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         getRadioButtonValue(_binding.bookAppointmentRadioGroup)
-        getAgeFromDatePicker(_binding.bookAppointmentDatePicker)
 
         _binding.bookAppointmentSaveB.setOnClickListener {
             setAppointmentsData()
@@ -120,6 +119,7 @@ class BookAppointmentFragment : Fragment() {
 
     private fun setAppointmentsData() {
         getIdFromBinding()
+        getAgeFromDatePicker(_binding.bookAppointmentDatePicker)
         if (name.isNotEmpty() && phoneNumber.isNotEmpty() && relation.isNotEmpty() && specialities.isNotEmpty() && doctor.isNotEmpty() && gender.isNotEmpty() && age.isNotEmpty()) {
             if (phoneNumber.length == 10) {
                 appointments = Appointments(
