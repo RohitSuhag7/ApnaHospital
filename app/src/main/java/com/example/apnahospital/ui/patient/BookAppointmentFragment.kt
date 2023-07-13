@@ -13,6 +13,7 @@ import androidx.fragment.app.viewModels
 import com.example.apnahospital.R
 import com.example.apnahospital.databinding.FragmentBookAppointmentBinding
 import com.example.apnahospital.model.Appointments
+import com.example.apnahospital.utils.Constants
 import com.example.apnahospital.utils.navigateTo
 import com.example.apnahospital.viewmodel.AppointmentsViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -45,6 +46,8 @@ class BookAppointmentFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        getAppointmentsData()
 
         getRadioButtonValue(_binding.bookAppointmentRadioGroup)
         getAgeFromDatePicker(_binding.bookAppointmentDatePicker)
@@ -144,6 +147,26 @@ class BookAppointmentFragment : Fragment() {
             }
         } else {
             Toast.makeText(requireContext(), "Fill all the Fields", Toast.LENGTH_LONG).show()
+        }
+    }
+
+    private fun getAppointmentsData() {
+        arguments.let {
+            with(_binding) {
+                bookAppointmentPatientNameEV.setText(it?.getString(Constants.PATIENT_NAME))
+                bookAppointmentPatientPhoneEV.setText(it?.getString(Constants.PATIENT_PHONE_NUMBER))
+                bookAppointmentRelationTV.setText(it?.getString(Constants.PATIENT_RELATION))
+                bookAppointmentSpecialitiesTV.setText(it?.getString(Constants.PATIENT_SPECIALITIES))
+                bookAppointmentSelectDoctorTV.setText(it?.getString(Constants.PATIENT_DOCTOR))
+
+                if (it?.getString(Constants.PATIENT_GENDER) == "Male") {
+                    bookAppointmentMale.isChecked = true
+                } else if (it?.getString(Constants.PATIENT_GENDER) == "Female") {
+                    bookAppointmentFemale.isChecked = true
+                }
+
+//                bookAppointmentDatePicker.month = it?.getString(Constants.PATIENT_AGE.)
+            }
         }
     }
 }

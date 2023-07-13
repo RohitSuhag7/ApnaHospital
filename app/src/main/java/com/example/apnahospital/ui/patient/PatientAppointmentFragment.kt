@@ -117,7 +117,6 @@ class PatientAppointmentFragment : Fragment(), AppointmentsAdapter.DeleteCallBac
                     is FirebaseResponseState.FirebaseSuccess -> {
                         appointmentsViewModel.deleteAppointments(item)
                         appointmentsAdapter.notifyDataSetChanged()
-                        appointmentsViewModel.getAppointments()
                     }
 
                     else -> {

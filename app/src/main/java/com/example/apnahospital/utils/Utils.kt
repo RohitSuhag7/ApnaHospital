@@ -6,7 +6,7 @@ import androidx.navigation.Navigation.findNavController
 import com.google.gson.Gson
 
 fun navigateTo(view: View?, id: Int, bundle: Bundle ?= null) {
-    findNavController(view!!).navigate(id)
+    findNavController(view!!).navigate(id, bundle)
 }
 
 fun <T> getJson(json: String?, clazz: Class<T>?): T {
