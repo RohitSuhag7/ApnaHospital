@@ -24,7 +24,7 @@ class BookAppointmentFragment : Fragment() {
     private val appointmentsViewModel by viewModels<AppointmentsViewModel>()
     private lateinit var appointments: Appointments
 
-    private var id = ""
+    private var key = ""
     private var imageUrl = ""
     private var name = ""
     private var phoneNumber = ""
@@ -47,6 +47,7 @@ class BookAppointmentFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         getRadioButtonValue(_binding.bookAppointmentRadioGroup)
+        getAgeFromDatePicker(_binding.bookAppointmentDatePicker)
 
         _binding.bookAppointmentSaveB.setOnClickListener {
             setAppointmentsData()
@@ -58,7 +59,7 @@ class BookAppointmentFragment : Fragment() {
             )
         }
 
-        val relationItems = listOf("Myself", "Father", "Mother", "Son", "Daughter", "Other")
+        val relationItems = listOf("Myself", "Father", "Mother", "Son", "Daughter", "Wife", "Other")
         val specialities = listOf(
             "Allergists/Immunologists",
             "Cardiologists",
@@ -92,7 +93,6 @@ class BookAppointmentFragment : Fragment() {
 
     private fun getIdFromBinding() {
         with(_binding) {
-            id = appointmentsViewModel.currentUser?.uid.toString()
             imageUrl = bookAppointmentPatientIV.toString()
             name = bookAppointmentPatientNameEV.text.toString()
             phoneNumber = bookAppointmentPatientPhoneEV.text.toString()
@@ -123,7 +123,7 @@ class BookAppointmentFragment : Fragment() {
         if (name.isNotEmpty() && phoneNumber.isNotEmpty() && relation.isNotEmpty() && specialities.isNotEmpty() && doctor.isNotEmpty() && gender.isNotEmpty() && age.isNotEmpty()) {
             if (phoneNumber.length == 10) {
                 appointments = Appointments(
-                    id,
+                    key,
                     imageUrl,
                     name,
                     phoneNumber,

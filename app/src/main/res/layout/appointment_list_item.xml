@@ -69,7 +69,7 @@
             android:id="@+id/listPatientDelete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/margin40"
+            android:layout_marginEnd="@dimen/margin10"
             app:layout_constraintBottom_toBottomOf="@+id/listPatientGender"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/listPatientName"

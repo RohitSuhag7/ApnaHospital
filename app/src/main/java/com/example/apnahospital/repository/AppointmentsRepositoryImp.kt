@@ -44,8 +44,19 @@ class AppointmentsRepositoryImp @Inject constructor(
         }
     }
 
-    override suspend fun deleteAppointments(): FirebaseResponseState {
-        TODO("Not yet implemented")
+    override suspend fun deleteAppointments(item: Appointments?): FirebaseResponseState {
+        return try {
+            val result = dbReference.get().addOnSuccessListener { dataSnapshot ->
+                dataSnapshot.children.forEach {
+                    if (it.key == item?.key) {
+                        it.ref.removeValue()
+                    }
+                }
+            }.await()
+            FirebaseResponseState.FirebaseSuccess(result)
+        } catch (e: Exception) {
+            FirebaseResponseState.FirebaseFailure(e)
+        }
     }
 
     override suspend fun updateAppointments(appointments: Appointments): FirebaseResponseState {

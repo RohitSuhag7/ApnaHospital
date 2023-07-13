@@ -1,5 +1,6 @@
 package com.example.apnahospital.ui.patient
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -20,7 +21,7 @@ import com.google.firebase.database.DataSnapshot
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class PatientAppointmentFragment : Fragment() {
+class PatientAppointmentFragment : Fragment(), AppointmentsAdapter.DeleteCallBack {
 
     private lateinit var _binding: FragmentPatientAppointmentBinding
     private val appointmentsViewModel by viewModels<AppointmentsViewModel>()
@@ -71,23 +72,52 @@ class PatientAppointmentFragment : Fragment() {
                     }
 
                     is FirebaseResponseState.FirebaseSuccess -> {
-
+                        appointmentsList?.clear()
                         val result = (state.data) as? DataSnapshot
                         result?.children?.forEach {
-                            val appoint = it.getValue(Appointments::class.java)!!
-                            appointmentsList?.add(appoint)
+                            val appointments = it.getValue(Appointments::class.java)
+                            appointments.apply {
+                                this?.key = it.key
+                            }
+                            appointmentsList?.add(appointments)
                         }
 
-                        appointmentsList?.let {
+                        if (appointmentsList?.isNotEmpty() == true) {
                             _binding.appointmentsProgressBar.visibility = View.GONE
                             _binding.appointmentNoData.visibility = View.GONE
 
-                            appointmentsAdapter = AppointmentsAdapter(appointmentsList)
+                            appointmentsAdapter = AppointmentsAdapter(
+                                appointmentsList,
+                                this@PatientAppointmentFragment
+                            )
                             _binding.appointmentRecyclerView.adapter = appointmentsAdapter
-                        } ?: run {
+                        } else {
                             _binding.appointmentsProgressBar.visibility = View.GONE
                             _binding.appointmentNoData.visibility = View.VISIBLE
                         }
+                    }
+
+                    else -> {
+                        Toast.makeText(
+                            requireContext(),
+                            "Please check your Internet connection",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                }
+            }
+        }
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    override fun deleteAppointmentItem(item: Appointments?) {
+        lifecycleScope.launchWhenStarted {
+            appointmentsViewModel.appointmentStateFlow.collect { state ->
+                when (state) {
+                    is FirebaseResponseState.FirebaseSuccess -> {
+                        appointmentsViewModel.deleteAppointments(item)
+                        appointmentsAdapter.notifyDataSetChanged()
+                        appointmentsViewModel.getAppointments()
                     }
 
                     else -> {

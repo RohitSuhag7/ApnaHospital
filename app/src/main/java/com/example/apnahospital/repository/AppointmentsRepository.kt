@@ -15,7 +15,7 @@ interface AppointmentsRepository {
 
     suspend fun getAppointments(): FirebaseResponseState
 
-    suspend fun deleteAppointments(): FirebaseResponseState
+    suspend fun deleteAppointments(item: Appointments?): FirebaseResponseState
 
     suspend fun updateAppointments(appointments: Appointments): FirebaseResponseState
 }

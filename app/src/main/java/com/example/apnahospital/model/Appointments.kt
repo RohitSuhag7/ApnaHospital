@@ -1,10 +1,10 @@
 package com.example.apnahospital.model
 
 data class Appointments(
-    val id: String ?= "",
+    var key: String ?= "",
     val image: String ?= "",
     val name: String ?= "",
-    val pNumber: String ?= "",
+    val pnumber: String ?= "",
     val relation: String ?= "",
     val specialities: String ?= "",
     val doctor: String ?= "",
