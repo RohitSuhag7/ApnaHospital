@@ -1,14 +1,16 @@
 package com.example.apnahospital.ui.patient
 
+import android.app.DatePickerDialog
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.DatePicker
 import android.widget.RadioGroup
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.viewModels
 import com.example.apnahospital.R
 import com.example.apnahospital.databinding.FragmentBookAppointmentBinding
@@ -17,6 +19,7 @@ import com.example.apnahospital.utils.Constants
 import com.example.apnahospital.utils.navigateTo
 import com.example.apnahospital.viewmodel.AppointmentsViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.Calendar
 
 @AndroidEntryPoint
 class BookAppointmentFragment : Fragment() {
@@ -44,13 +47,14 @@ class BookAppointmentFragment : Fragment() {
         return _binding.root
     }
 
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         getAppointmentsData()
 
         getRadioButtonValue(_binding.bookAppointmentRadioGroup)
-        getAgeFromDatePicker(_binding.bookAppointmentDatePicker)
+        getAgeFromDatePicker()
 
         _binding.bookAppointmentSaveB.setOnClickListener {
             setAppointmentsData()
@@ -111,18 +115,27 @@ class BookAppointmentFragment : Fragment() {
         }
     }
 
-    private fun getAgeFromDatePicker(datePicker: DatePicker) {
-        datePicker.maxDate = System.currentTimeMillis()
-        val day = datePicker.dayOfMonth
-        val month = datePicker.month
-        val year = datePicker.year
+    private fun getAgeFromDatePicker() {
+        _binding.bookAppointmentSelectAgeIV.setOnClickListener {
+            val calendar = Calendar.getInstance()
 
-        age = "$day - ${month + 1} - $year"
+            val year = calendar.get(Calendar.YEAR)
+            val month = calendar.get(Calendar.MONTH)
+            val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+            val datePickerDialog =
+                DatePickerDialog(requireContext(), { _, yearOfYear, monthOfYear, dayOfMonth ->
+                    age = (dayOfMonth.toString() + "-" + (monthOfYear + 1) + "-" + yearOfYear)
+                    _binding.bookAppointmentAgeTV.setText(age)
+                }, year, month, day)
+            datePickerDialog.datePicker.maxDate = System.currentTimeMillis()
+            datePickerDialog.show()
+        }
     }
 
     private fun setAppointmentsData() {
         getIdFromBinding()
-        getAgeFromDatePicker(_binding.bookAppointmentDatePicker)
+        getAgeFromDatePicker()
         if (name.isNotEmpty() && phoneNumber.isNotEmpty() && relation.isNotEmpty() && specialities.isNotEmpty() && doctor.isNotEmpty() && gender.isNotEmpty() && age.isNotEmpty()) {
             if (phoneNumber.length == 10) {
                 appointments = Appointments(
@@ -150,22 +163,24 @@ class BookAppointmentFragment : Fragment() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     private fun getAppointmentsData() {
         arguments.let {
             with(_binding) {
-                bookAppointmentPatientNameEV.setText(it?.getString(Constants.PATIENT_NAME))
-                bookAppointmentPatientPhoneEV.setText(it?.getString(Constants.PATIENT_PHONE_NUMBER))
-                bookAppointmentRelationTV.setText(it?.getString(Constants.PATIENT_RELATION))
-                bookAppointmentSpecialitiesTV.setText(it?.getString(Constants.PATIENT_SPECIALITIES))
-                bookAppointmentSelectDoctorTV.setText(it?.getString(Constants.PATIENT_DOCTOR))
+                val item = it?.getParcelable(Constants.APPOINTMENTS_ITEMS, Appointments::class.java)
 
-                if (it?.getString(Constants.PATIENT_GENDER) == "Male") {
+                bookAppointmentPatientNameEV.setText(item?.name)
+                bookAppointmentPatientPhoneEV.setText(item?.pnumber)
+                bookAppointmentRelationTV.setText(item?.relation)
+                bookAppointmentSpecialitiesTV.setText(item?.specialities)
+                bookAppointmentSelectDoctorTV.setText(item?.doctor)
+                bookAppointmentAgeTV.setText(item?.age)
+
+                if (item?.gender == "Male") {
                     bookAppointmentMale.isChecked = true
-                } else if (it?.getString(Constants.PATIENT_GENDER) == "Female") {
+                } else if (item?.gender == "Female") {
                     bookAppointmentFemale.isChecked = true
                 }
-
-//                bookAppointmentDatePicker.month = it?.getString(Constants.PATIENT_AGE.)
             }
         }
     }

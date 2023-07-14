@@ -5,6 +5,7 @@ object Constants {
     const val PATIENTS = "patients"
     const val APPOINTMENTS = "appointments"
     const val FIRST_LOGIN = "firstLogin"
+    const val APPOINTMENTS_ITEMS = "appointmentItem"
     const val PATIENTS_IMAGE = "image"
     const val PATIENT_NAME = "name"
     const val PATIENT_EMAIL = "email"

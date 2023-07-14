@@ -131,22 +131,22 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/bookAppointmentSelectDoctorETV"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/margin2"
-                    android:hint="@string/select_doctor"
-                    android:visibility="gone"
-                    app:boxStrokeColor="@color/Sky_Blue"
-                    app:hintTextColor="@color/black">
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin2"
+                android:hint="@string/select_doctor"
+                android:visibility="gone"
+                app:boxStrokeColor="@color/Sky_Blue"
+                app:hintTextColor="@color/black">
 
                 <AutoCompleteTextView
-                        android:id="@+id/bookAppointmentSelectDoctorTV"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginBottom="@dimen/margin2"
-                        android:layout_weight="1"
-                        android:inputType="none" />
+                    android:id="@+id/bookAppointmentSelectDoctorTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="@dimen/margin2"
+                    android:layout_weight="1"
+                    android:inputType="none" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -179,38 +179,55 @@
                     android:layout_marginStart="@dimen/margin16"
                     android:text="@string/female" />
 
-<!--                <RadioButton-->
-<!--                    android:id="@+id/bookAppointmentOthers"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="@string/others" />-->
             </RadioGroup>
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/bookAppointmentSelectAge"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin5"
-                android:layout_marginTop="@dimen/margin5"
-                android:text="@string/select_your_age"
-                android:textColor="@color/black" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/margin10">
 
-            <DatePicker
-                android:id="@+id/bookAppointmentDatePicker"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/marginMinus10"
-                android:calendarViewShown="false"
-                android:datePickerMode="spinner"
-                android:spinnersShown="true" />
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="200dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/margin20"
+                    android:layout_marginBottom="@dimen/margin2"
+                    android:hint="@string/select_your_age"
+                    app:boxStrokeColor="@color/Sky_Blue"
+                    app:hintTextColor="@color/black">
 
+                    <AutoCompleteTextView
+                        android:id="@+id/bookAppointmentAgeTV"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="@dimen/margin2"
+                        android:layout_weight="1"
+                        android:inputType="none"
+                        android:padding="@dimen/margin10" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/bookAppointmentSelectAgeIV"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginEnd="@dimen/margin40"
+                    android:src="@drawable/ic_calendar"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true" />
+
+            </RelativeLayout>
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/bookAppointmentSaveB"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/margin10"
+            android:layout_marginHorizontal="@dimen/margin10"
+            android:layout_marginTop="@dimen/margin56"
+            android:layout_marginBottom="@dimen/margin10"
             android:backgroundTint="@color/button_color"
             android:text="@string/save"
             android:textAllCaps="false"
@@ -222,8 +239,9 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/bookAppointmentCancelB"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin10"
             android:text="@string/cancel"
             android:textAllCaps="false"
             android:backgroundTint="@color/button_color"

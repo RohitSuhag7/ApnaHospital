@@ -21,7 +21,6 @@ class AppointmentsAdapter(
     RecyclerView.Adapter<AppointmentsAdapter.ViewHolder>() {
 
     private lateinit var _binding: AppointmentListItemBinding
-    private lateinit var bundle: Bundle
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view)
 
@@ -52,19 +51,11 @@ class AppointmentsAdapter(
             ).show()
         }
 
-        bundle = Bundle()
-
-        bundle.putString(Constants.PATIENTS_IMAGE, item?.image)
-        bundle.putString(Constants.PATIENT_NAME, item?.name)
-        bundle.putString(Constants.PATIENT_PHONE_NUMBER, item?.pnumber)
-        bundle.putString(Constants.PATIENT_RELATION, item?.relation)
-        bundle.putString(Constants.PATIENT_SPECIALITIES, item?.specialities)
-        bundle.putString(Constants.PATIENT_DOCTOR, item?.doctor)
-        bundle.putString(Constants.PATIENT_GENDER, item?.gender)
-        bundle.putString(Constants.PATIENT_AGE, item?.age)
-
         _binding.appointmentCV.setOnClickListener {
-            navigateTo(holder.itemView, R.id.action_appointmentFragment_to_bookAppointmentFragment, bundle)
+            val bundle = Bundle()
+            bundle.putParcelable(Constants.APPOINTMENTS_ITEMS, item)
+
+            navigateTo(it, R.id.action_appointmentFragment_to_bookAppointmentFragment, bundle)
         }
     }
 
